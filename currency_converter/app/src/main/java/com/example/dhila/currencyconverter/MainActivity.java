@@ -11,13 +11,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void conversion(View view) {
 
-        EditText myTextView = (EditText) findViewById(R.id.editText);
-
-        Log.i("Test", "Button clicked");
+        EditText myEditText = (EditText) findViewById(R.id.editText);
 
         double USD_AUD = 1.314;
+        String editTextToString = myEditText.getText().toString();
+        int editTextToInt = Integer.parseInt(editTextToString);
+        double convertedAmount = USD_AUD * editTextToInt;
 
-        Toast.makeText(MainActivity.this, Double.toString(Integer.parseInt(myTextView.getText().toString()) * USD_AUD), Toast.LENGTH_LONG
+        Toast.makeText(MainActivity.this, Double.toString(convertedAmount), Toast.LENGTH_LONG
         ).show();
 
 
