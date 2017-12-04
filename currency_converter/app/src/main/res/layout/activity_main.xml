@@ -7,7 +7,7 @@
     tools:context="com.example.dhila.currencyconverter.MainActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/usd_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
@@ -21,7 +21,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/usd_input"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
         android:onClick="conversion"
