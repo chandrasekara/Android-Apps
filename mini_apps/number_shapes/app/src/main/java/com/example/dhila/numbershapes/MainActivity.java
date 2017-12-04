@@ -15,24 +15,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void testNumber(View view) {
 
-        //first test whether it is empty or not
 
         boolean isSquareNumberValue = false;
         boolean isTriangularNumberValue = false;
 
+        //Holds the final output to the user
         String outputMessage = "";
 
         EditText myNumberInput = (EditText) findViewById(R.id.numberInput);
 
+        //Checking whether an empty input (including spaces) has been input
         if (myNumberInput.getText().toString().trim().length() > 0) {
 
+            //If the input isn't empty, check if it's a square or triangular number
             isSquareNumberValue = isSquareNumber(Integer.parseInt(myNumberInput.getText()
                     .toString()));
 
             isTriangularNumberValue = isTriangularNumber(Integer.parseInt(myNumberInput.getText()
             .toString()));
-            //Toast.makeText(MainActivity.this, String.valueOf(isTriangularNumberValue),
-             //       Toast.LENGTH_LONG).show();
         }
         else {
             outputMessage = outputMessage + "Please enter a number";
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             outputMessage = outputMessage + "The number is a triangular number!\n";
         }
 
+        //Final output
         if (!outputMessage.equals("")) {
             Toast.makeText(MainActivity.this, outputMessage, Toast.LENGTH_LONG).show();
 
