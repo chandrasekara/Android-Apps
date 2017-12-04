@@ -31,12 +31,26 @@ public class MainActivity extends AppCompatActivity {
 
             isTriangularNumberValue = isTriangularNumber(Integer.parseInt(myNumberInput.getText()
             .toString()));
-            Toast.makeText(MainActivity.this, String.valueOf(isTriangularNumberValue),
-                    Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this, String.valueOf(isTriangularNumberValue),
+             //       Toast.LENGTH_LONG).show();
         }
         else {
-            Toast.makeText(MainActivity.this, "empty", Toast.LENGTH_LONG
-            ).show();
+            outputMessage = outputMessage + "Please enter a number";
+        }
+
+        if (isSquareNumberValue) {
+            outputMessage = outputMessage + "The number is a square number!\n";
+        }
+        if (isTriangularNumberValue) {
+            outputMessage = outputMessage + "The number is a triangular number!\n";
+        }
+
+        if (!outputMessage.equals("")) {
+            Toast.makeText(MainActivity.this, outputMessage, Toast.LENGTH_LONG).show();
+
+        } else {
+            Toast.makeText(MainActivity.this, "The number is neither a square number" +
+                    " nor triangular number", Toast.LENGTH_LONG).show();
         }
 
     }
