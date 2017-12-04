@@ -7,7 +7,7 @@
     tools:context="com.example.dhila.numbershapes.MainActivity">
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/numberInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,8 +19,9 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/numberInput"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
+        android:onClick="testNumber"
         android:text="test" />
 </android.widget.RelativeLayout>
