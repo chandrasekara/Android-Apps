@@ -20,13 +20,18 @@ public class MainActivity extends AppCompatActivity {
         boolean isSquareNumberValue = false;
         boolean isTriangularNumberValue = false;
 
+        String outputMessage = "";
+
         EditText myNumberInput = (EditText) findViewById(R.id.numberInput);
 
         if (myNumberInput.getText().toString().trim().length() > 0) {
 
             isSquareNumberValue = isSquareNumber(Integer.parseInt(myNumberInput.getText()
                     .toString()));
-            Toast.makeText(MainActivity.this, String.valueOf(isSquareNumberValue),
+
+            isTriangularNumberValue = isTriangularNumber(Integer.parseInt(myNumberInput.getText()
+            .toString()));
+            Toast.makeText(MainActivity.this, String.valueOf(isTriangularNumberValue),
                     Toast.LENGTH_LONG).show();
         }
         else {
@@ -45,6 +50,29 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return true;
         }
+    }
+
+    public boolean isTriangularNumber(int inputNum) {
+
+        int indexNumber = 1;
+        int incrementNumber = 1;
+
+        boolean breakOut = false;
+
+        while (!breakOut) {
+            if (inputNum == indexNumber) {
+                return true;
+            } else if (inputNum < indexNumber) {
+                return false;
+            }
+
+            incrementNumber++;
+            indexNumber += incrementNumber;
+        }
+
+        return false;
+
+
     }
 
     @Override
