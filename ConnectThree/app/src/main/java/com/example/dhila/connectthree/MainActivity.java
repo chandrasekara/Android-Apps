@@ -7,8 +7,16 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    public void testMethod(View view) {
-        Log.i("test","yaaas");
+    public void comeFromTop(View view) {
+        view.setAlpha(1f);
+
+        view.setTranslationY(-800f);
+
+        view.animate().translationYBy(800f).setDuration(500);
+
+
+
+
 
     }
 
