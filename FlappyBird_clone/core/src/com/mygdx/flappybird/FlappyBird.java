@@ -58,6 +58,7 @@ public class FlappyBird extends ApplicationAdapter {
 
 				if (birdY < screen_height) {
 					velocity = -10;
+					
 				}
 			}
 
