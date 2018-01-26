@@ -10,6 +10,8 @@ import java.util.Date;
 public class FlappyBird extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture background;
+	Texture topTube;
+	Texture bottomTube;
 	Texture[] birds;
 
 	int flapState = 0;
@@ -25,6 +27,8 @@ public class FlappyBird extends ApplicationAdapter {
 
 	float gravity = 0.4f;
 
+	int tubeXPos;
+
 
 	@Override
 	public void create () {
@@ -33,6 +37,9 @@ public class FlappyBird extends ApplicationAdapter {
 		birds = new Texture[2];
 		birds[0] = new Texture("bird.png");
 		birds[1] = new Texture("bird2.png");
+
+		topTube = new Texture("toptube.png");
+		bottomTube = new Texture("bottomtube.png");
 
 		screen_width = Gdx.graphics.getWidth();
 
@@ -44,39 +51,38 @@ public class FlappyBird extends ApplicationAdapter {
 		flapStartTime = new Date().getTime();
 
 
+		// temp
+
+
+		tubeXPos = screen_width-birds[flapState].getWidth();
+
+
 	}
 
 	@Override
 	public void render () {
 
-
-
-
 		if (gameState != 0) {
+
+
+			//moving of the tubes, put this in another function later
+			tubeXPos -= 2;
 
 			if (Gdx.input.justTouched()) {
 
 				if (birdY < screen_height) {
 					velocity = -10;
-					
 				}
 			}
 
 			if (birdY > 0 || velocity < 0) {
 				velocity += gravity;
-
 				birdY -= velocity;
 
 			}
 
-
-
-
-
 		} else {
 			if (Gdx.input.justTouched()) {
-
-
 				Gdx.app.log("Touched", "yep");
 				gameState = 1;
 			}
@@ -102,6 +108,19 @@ public class FlappyBird extends ApplicationAdapter {
 
 		batch.draw(background, 0, 0, screen_width, screen_height);
 		//batch.draw(bird, 0, 0, screen_width, screen_height);
+
+		int offset = 1;
+
+		offset = birds[0].getHeight()*offset;
+
+
+		//maybe put these in separate functions
+
+
+
+		batch.draw(topTube,tubeXPos,screen_height/2 + offset,topTube.getWidth(),screen_height/2 );
+
+		batch.draw(bottomTube,tubeXPos,-offset,bottomTube.getWidth(),screen_height/2);
 
 		batch.draw(birds[flapState], screen_width / 2 - birds[flapState].getWidth() / 2, birdY);
 
