@@ -64,7 +64,6 @@ public class FlappyBird extends ApplicationAdapter {
 
 		if (gameState != 0) {
 
-
 			//moving of the tubes, put this in another function later
 			tubeXPos -= 2;
 
