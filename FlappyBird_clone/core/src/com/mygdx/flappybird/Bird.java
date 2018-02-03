@@ -12,7 +12,7 @@ public class Bird {
     Texture[] sprites;
     public int x;
     public int y;
-    public int velocity;
+    public float velocity;
 
     SpriteBatch batch;
 
@@ -36,10 +36,18 @@ public class Bird {
 
         flapSpriteState = 0;
 
+        velocity = 0;
+
 
 
 
     }
+
+    public void start() {
+
+        velocity = -20;
+    }
+
 
     public void render() {
 
@@ -49,8 +57,28 @@ public class Bird {
             flapSpriteState = 0;
         }
 
+        //put this in a different method later
+
+        if (y>0 || velocity >0) {
+            velocity -= FlappyBird.gravity;
+
+            y += velocity;
+
+        }
+
+
         batch.draw(sprites[flapSpriteState],x - sprites[0].getWidth()/2,y -
                 sprites[0].getHeight()/2);
+
+
+
+    }
+
+    public void jump() {
+
+        if (y < FlappyBird.screen_height) {
+            velocity = 15;
+        }
 
     }
 
