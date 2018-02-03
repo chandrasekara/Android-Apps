@@ -16,6 +16,8 @@ public class Bird {
 
     SpriteBatch batch;
 
+    int flapSpriteState;
+
 
 
     public Bird (SpriteBatch batch_in) {
@@ -32,13 +34,23 @@ public class Bird {
 
         this.batch = batch_in;
 
+        flapSpriteState = 0;
+
 
 
 
     }
 
     public void render() {
-        batch.draw(sprites[0],x - sprites[0].getWidth()/2,y - sprites[0].getHeight()/2);
+
+        if (flapSpriteState == 0) {
+            flapSpriteState = 1;
+        } else {
+            flapSpriteState = 0;
+        }
+
+        batch.draw(sprites[flapSpriteState],x - sprites[0].getWidth()/2,y -
+                sprites[0].getHeight()/2);
 
     }
 
