@@ -17,8 +17,9 @@ public class FlappyBird extends ApplicationAdapter {
 	int flapState = 0;
 	long flapStartTime;
 	float birdY = 0;
-	int screen_width = 0;
-	int screen_height = 0;
+
+	static int screen_width = 0;
+	static int screen_height = 0;
 
 
 	float velocity = 0;
@@ -28,6 +29,8 @@ public class FlappyBird extends ApplicationAdapter {
 	float gravity = 0.4f;
 
 	int tubeXPos;
+
+	Bird flappy;
 
 
 	@Override
@@ -55,6 +58,8 @@ public class FlappyBird extends ApplicationAdapter {
 
 
 		tubeXPos = screen_width-birds[flapState].getWidth();
+
+		flappy = new Bird(batch);
 
 
 	}
@@ -108,20 +113,24 @@ public class FlappyBird extends ApplicationAdapter {
 		batch.draw(background, 0, 0, screen_width, screen_height);
 		//batch.draw(bird, 0, 0, screen_width, screen_height);
 
-		int offset = 1;
+		double offset = 1.5;
 
-		offset = birds[0].getHeight()*offset;
+		int offset_true = (int) (birds[0].getHeight()*offset);
 
 
 		//maybe put these in separate functions
 
 
 
-		batch.draw(topTube,tubeXPos,screen_height/2 + offset,topTube.getWidth(),screen_height/2 );
+		batch.draw(topTube,tubeXPos,screen_height/2 + offset_true,topTube.getWidth(),screen_height/2 );
 
-		batch.draw(bottomTube,tubeXPos,-offset,bottomTube.getWidth(),screen_height/2);
+		batch.draw(bottomTube,tubeXPos,-offset_true,bottomTube.getWidth(),screen_height/2);
 
+		/*
 		batch.draw(birds[flapState], screen_width / 2 - birds[flapState].getWidth() / 2, birdY);
+		*/
+
+		flappy.render();
 
 		batch.end();
 
