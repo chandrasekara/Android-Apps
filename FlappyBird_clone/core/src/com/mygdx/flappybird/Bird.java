@@ -27,8 +27,6 @@ public class Bird {
         sprites[0] = new Texture("bird.png");
         sprites[1] = new Texture("bird2.png");
 
-        //temporary
-
         x = FlappyBird.screen_width/2;
         y = FlappyBird.screen_height/2;
 
@@ -37,10 +35,7 @@ public class Bird {
         flapSpriteState = 0;
 
         velocity = 0;
-
-
-
-
+        
     }
 
     public void start() {
