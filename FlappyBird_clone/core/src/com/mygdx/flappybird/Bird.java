@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Created by dhila on 26/01/2018.
+ *
  */
 
 public class Bird {
