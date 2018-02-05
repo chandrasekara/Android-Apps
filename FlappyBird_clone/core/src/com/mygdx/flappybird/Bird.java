@@ -41,7 +41,7 @@ public class Bird {
 
     public void start() {
 
-        velocity = -20;
+        jump();
     }
 
 
@@ -54,7 +54,6 @@ public class Bird {
         }
 
         //put this in a different method later
-
         if (y>0 || velocity >0) {
             velocity -= FlappyBird.gravity;
 

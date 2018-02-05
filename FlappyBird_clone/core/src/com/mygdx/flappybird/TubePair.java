@@ -9,11 +9,17 @@ import com.badlogic.gdx.graphics.Texture;
 public class TubePair {
 
     public int x;
-    public Texture sprite;
+    public static Texture topSprite = new Texture("toptube.png");
+    public static Texture bottomSprite = new Texture("bottomtube.png");
 
-    public TubePair(int x_) {
+    public int offset;
+
+
+    public TubePair(int x_, int offset_) {
         this.x = x_;
-        this.sprite = new Texture("toptube.png");
+        this.offset = offset_;
+
+
     }
 
 }

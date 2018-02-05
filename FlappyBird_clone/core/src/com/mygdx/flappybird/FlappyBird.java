@@ -17,15 +17,12 @@ public class FlappyBird extends ApplicationAdapter {
 
 	static int screen_width = 0;
 	static int screen_height = 0;
-
 	static float gravity = 0.8f;
 
 	int tubeXPos;
-
-	Bird flappy;
-
 	int gameState = 0;
 
+	Bird flappy;
 	ArrayList<TubePair> tubes;
 
 
@@ -38,12 +35,12 @@ public class FlappyBird extends ApplicationAdapter {
 		screen_height = Gdx.graphics.getHeight();
 
 		flappy = new Bird(batch);
-
-		TubeGenerator tubeGenerator = new TubeGenerator(2, this);
-
 		tubes = new ArrayList<TubePair>();
 
+
+		TubeGenerator tubeGenerator = new TubeGenerator(2, this);
 		addTubePair( tubeGenerator.generateTube()  );
+
 
 	}
 
@@ -51,17 +48,13 @@ public class FlappyBird extends ApplicationAdapter {
 	public void render () {
 
 		batch.begin();
-
 		batch.draw(background, 0, 0, screen_width, screen_height);
-
 		flappy.render();
 
 		if (gameState != 0) {
-
 			if (Gdx.input.justTouched()) {
 				flappy.jump();
 			}
-
 		} else {
 			if (Gdx.input.justTouched()) {
 				Gdx.app.log("Touched", "yep");
@@ -70,14 +63,16 @@ public class FlappyBird extends ApplicationAdapter {
 			}
 		}
 
+		// Render all of the tubes that are present on screen
+
+
 		for (TubePair tube: tubes) {
-			batch.draw(tube.sprite,tube.x, screen_height/2);
+			batch.draw(TubePair.bottomSprite,0, -1*tube.offset*5 );
+			batch.draw(TubePair.topSprite, 0, screen_height/2 + tube.offset*5);
 		}
 
+
 		batch.end();
-
-
-
 
 	}
 

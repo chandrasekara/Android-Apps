@@ -1,5 +1,7 @@
 package com.mygdx.flappybird;
 
+import com.badlogic.gdx.graphics.Texture;
+
 /**
  * Created by dhila on 4/02/2018.
  */
@@ -9,6 +11,7 @@ public class TubeGenerator {
     public int timeInterval;
 
     public FlappyBird game;
+
 
 
     public TubeGenerator(int timeInterval_, FlappyBird game_ ) {
@@ -27,7 +30,7 @@ public class TubeGenerator {
 
     public TubePair generateTube() {
 
-        return new TubePair(FlappyBird.screen_width - 100); //temp
+        return new TubePair(FlappyBird.screen_width - TubePair.topSprite.getWidth(), 50); //temp
 
     }
 
