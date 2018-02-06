@@ -12,6 +12,8 @@ public class TubeGenerator {
 
     public FlappyBird game;
 
+    public boolean createTube = true;
+
 
 
     public TubeGenerator(int timeInterval_, FlappyBird game_ ) {
@@ -30,7 +32,8 @@ public class TubeGenerator {
 
     public TubePair generateTube() {
 
-        return new TubePair(FlappyBird.screen_width - TubePair.topSprite.getWidth(), 50); //temp
+        // change to proper x value later
+        return new TubePair(500, 50); //temp
 
     }
 

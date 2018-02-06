@@ -65,10 +65,19 @@ public class FlappyBird extends ApplicationAdapter {
 
 		// Render all of the tubes that are present on screen
 
+		// Find a way to have this in the same for loop later
 
 		for (TubePair tube: tubes) {
-			batch.draw(TubePair.bottomSprite,0, -1*tube.offset*5 );
-			batch.draw(TubePair.topSprite, 0, screen_height/2 + tube.offset*5);
+			//Get rid of the tube if it's off screen
+
+			// DO THIS LATER
+			//if (tube.x < 0)
+		}
+
+		for (TubePair tube: tubes) {
+			tube.step();
+			batch.draw(TubePair.bottomSprite,tube.x, -1*tube.offset*5 );
+			batch.draw(TubePair.topSprite, tube.x, screen_height/2 + tube.offset*5);
 		}
 
 

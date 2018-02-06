@@ -22,4 +22,10 @@ public class TubePair {
 
     }
 
+    public void step() {
+
+        this.x -= 10;
+
+    }
+
 }
