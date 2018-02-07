@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.Date;
 
+
+import sun.rmi.runtime.Log;
+
 public class FlappyBird extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture background;
@@ -25,6 +28,11 @@ public class FlappyBird extends ApplicationAdapter {
 	Bird flappy;
 	ArrayList<TubePair> tubes;
 
+	public int framesPerSecond;
+
+	TubeGenerator tubeGenerator;
+
+
 
 	@Override
 	public void create () {
@@ -38,14 +46,17 @@ public class FlappyBird extends ApplicationAdapter {
 		tubes = new ArrayList<TubePair>();
 
 
-		TubeGenerator tubeGenerator = new TubeGenerator(2, this);
-		addTubePair( tubeGenerator.generateTube()  );
+		tubeGenerator = new TubeGenerator(2, this);
+
 
 
 	}
 
 	@Override
 	public void render () {
+
+		framesPerSecond = Gdx.graphics.getFramesPerSecond();
+		Gdx.app.log("MyTag", Integer.toString(framesPerSecond));
 
 		batch.begin();
 		batch.draw(background, 0, 0, screen_width, screen_height);
@@ -80,8 +91,9 @@ public class FlappyBird extends ApplicationAdapter {
 			batch.draw(TubePair.topSprite, tube.x, screen_height/2 + tube.offset*5);
 		}
 
-
 		batch.end();
+
+		tubeGenerator.step();
 
 	}
 
