@@ -82,7 +82,9 @@ public class FlappyBird extends ApplicationAdapter {
 			//Get rid of the tube if it's off screen
 
 			// DO THIS LATER
-			//if (tube.x < 0)
+			if (tube.x < 0 - tube.bottomSprite.getWidth()) {
+				tubes.remove(tube);
+			}
 		}
 
 		for (TubePair tube: tubes) {
