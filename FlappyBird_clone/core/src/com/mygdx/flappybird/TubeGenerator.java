@@ -1,5 +1,6 @@
 package com.mygdx.flappybird;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
@@ -70,7 +71,13 @@ public class TubeGenerator {
 
         counter += 1;
 
-        if (counter > 120) {
+        int FPS = Gdx.graphics.getFramesPerSecond();
+
+        if (FPS < 60) {
+            FPS = 80; //magic numbers, change later
+        }
+
+        if (counter > FPS) {
 
             this.game.addTubePair( generateTube()  );
 

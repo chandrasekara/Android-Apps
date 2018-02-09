@@ -78,15 +78,13 @@ public class FlappyBird extends ApplicationAdapter {
 
 		// Find a way to have this in the same for loop later
 
-		for (TubePair tube: tubes) {
-			//Get rid of the tube if it's off screen
+		TubePair leftMostTubePair = tubes.get(0);
 
-			// DO THIS LATER
-			if (tube.x < 0 - tube.bottomSprite.getWidth()) {
-				tubes.remove(tube);
-			}
+		if (leftMostTubePair.x < 0 - TubePair.bottomSprite.getWidth()) {
+			tubes.remove(0);
+			tubes.trimToSize();
 		}
-
+		
 		for (TubePair tube: tubes) {
 			tube.step();
 			batch.draw(TubePair.bottomSprite,tube.x, -1*tube.offset*5 );
