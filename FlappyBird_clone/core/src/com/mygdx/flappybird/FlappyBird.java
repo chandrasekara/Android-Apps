@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 
 import sun.rmi.runtime.Log;
@@ -63,6 +64,7 @@ public class FlappyBird extends ApplicationAdapter {
 		batch.draw(background, 0, 0, screen_width, screen_height);
 		flappy.render();
 
+
 		if (gameState != 0) {
 			if (Gdx.input.justTouched()) {
 				flappy.jump();
@@ -89,8 +91,8 @@ public class FlappyBird extends ApplicationAdapter {
 		for (TubePair tube: tubes) {
 			tube.step();
 			batch.draw(TubePair.bottomSprite,tube.x, Gdx.graphics.getHeight() / 2 - tube.gap / 2
-					-  tube.bottomSprite.getHeight()  );
-			batch.draw(TubePair.topSprite, tube.x, Gdx.graphics.getHeight() / 2 + tube.gap / 2);
+					-  tube.bottomSprite.getHeight() + tube.offset );
+			batch.draw(TubePair.topSprite, tube.x, Gdx.graphics.getHeight() / 2 + tube.gap / 2 + tube.offset);
 		}
 
 		batch.end();

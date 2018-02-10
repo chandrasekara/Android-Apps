@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Random;
 
 public class TubeGenerator {
 
@@ -89,8 +90,8 @@ public class TubeGenerator {
 
     public TubePair generateTube() {
 
-        // change to proper x value later
-        return new TubePair(FlappyBird.screen_width + TubePair.topSprite.getWidth(), 50); //temp
+        Random randomNum = new Random();
+        return new TubePair(FlappyBird.screen_width + TubePair.topSprite.getWidth(), randomNum.nextInt(800)-400); //temp
 
     }
 
