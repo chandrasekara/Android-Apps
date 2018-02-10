@@ -19,6 +19,8 @@ public class Bird {
 
     int flapSpriteState;
 
+    int frameCount;
+
 
 
     public Bird (SpriteBatch batch_in) {
@@ -36,6 +38,8 @@ public class Bird {
         flapSpriteState = 0;
 
         velocity = 0;
+
+        frameCount = 0;
         
     }
 
@@ -47,11 +51,18 @@ public class Bird {
 
     public void render() {
 
-        if (flapSpriteState == 0) {
-            flapSpriteState = 1;
-        } else {
-            flapSpriteState = 0;
+        frameCount += 1;
+
+
+        if (frameCount > 5) {
+            frameCount = 0;
+            if (flapSpriteState == 0) {
+                flapSpriteState = 1;
+            } else {
+                flapSpriteState = 0;
+            }
         }
+
 
         //put this in a different method later
         if (y>0 || velocity >0) {

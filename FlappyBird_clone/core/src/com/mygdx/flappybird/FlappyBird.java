@@ -55,6 +55,7 @@ public class FlappyBird extends ApplicationAdapter {
 	@Override
 	public void render () {
 
+		//Remove later
 		framesPerSecond = Gdx.graphics.getFramesPerSecond();
 		Gdx.app.log("MyTag", Integer.toString(framesPerSecond));
 
@@ -84,7 +85,7 @@ public class FlappyBird extends ApplicationAdapter {
 			tubes.remove(0);
 			tubes.trimToSize();
 		}
-		
+
 		for (TubePair tube: tubes) {
 			tube.step();
 			batch.draw(TubePair.bottomSprite,tube.x, -1*tube.offset*5 );
