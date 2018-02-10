@@ -14,6 +14,9 @@ public class TubePair {
 
     public int offset;
 
+    public int gap = 400;
+
+
 
 
 

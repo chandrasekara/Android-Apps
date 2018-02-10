@@ -88,8 +88,9 @@ public class FlappyBird extends ApplicationAdapter {
 
 		for (TubePair tube: tubes) {
 			tube.step();
-			batch.draw(TubePair.bottomSprite,tube.x, -1*tube.offset*5 );
-			batch.draw(TubePair.topSprite, tube.x, screen_height/2 + tube.offset*5);
+			batch.draw(TubePair.bottomSprite,tube.x, Gdx.graphics.getHeight() / 2 - tube.gap / 2
+					-  tube.bottomSprite.getHeight()  );
+			batch.draw(TubePair.topSprite, tube.x, Gdx.graphics.getHeight() / 2 + tube.gap / 2);
 		}
 
 		batch.end();
