@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
@@ -67,12 +68,20 @@ public class FlappyBird extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(background, 0, 0, screen_width, screen_height);
 
-
+		
 
 		if (gameState != 0) {
 			if (Gdx.input.justTouched()) {
 				flappy.jump();
 			}
+
+			flappy.step();
+
+			batch.draw(black,flappy.x - flappy.sprites[0].getWidth() / 2,flappy.y
+					- flappy.sprites[0].getHeight() / 2,flappy.sprites[0].getWidth(),flappy.sprites[0].getHeight());
+
+			flappy.render();
+			tubeGenerator.step();
 
 
 			// Render all of the tubes that are present on screen
@@ -113,15 +122,6 @@ public class FlappyBird extends ApplicationAdapter {
 
 			}
 
-
-
-			flappy.step();
-
-			batch.draw(black,flappy.x - flappy.sprites[0].getWidth() / 2,flappy.y
-					- flappy.sprites[0].getHeight() / 2,flappy.sprites[0].getWidth(),flappy.sprites[0].getHeight());
-
-			flappy.render();
-			tubeGenerator.step();
 
 
 		} else {
