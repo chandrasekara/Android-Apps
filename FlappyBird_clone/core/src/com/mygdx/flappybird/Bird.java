@@ -66,15 +66,6 @@ public class Bird {
         }
 
 
-        //put this in a different method later
-        if (y>0 || velocity >0) {
-            velocity -= FlappyBird.gravity;
-
-            y += velocity;
-
-        }
-
-
         batch.draw(sprites[flapSpriteState],x - sprites[0].getWidth()/2,y -
                 sprites[0].getHeight()/2);
 
@@ -86,6 +77,17 @@ public class Bird {
 
         if (y < FlappyBird.screen_height) {
             velocity = 15;
+        }
+
+    }
+
+    public void step() {
+
+        if (y>0 || velocity >0) {
+            velocity -= FlappyBird.gravity;
+
+            y += velocity;
+
         }
 
     }

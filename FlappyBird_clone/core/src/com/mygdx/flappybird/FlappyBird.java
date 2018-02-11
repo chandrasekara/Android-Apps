@@ -57,13 +57,16 @@ public class FlappyBird extends ApplicationAdapter {
 	@Override
 	public void render () {
 
+		// Remove later
+		Texture black = new Texture("black.png");
+
 		//Remove later
 		framesPerSecond = Gdx.graphics.getFramesPerSecond();
 		Gdx.app.log("MyTag", Integer.toString(framesPerSecond));
 
 		batch.begin();
 		batch.draw(background, 0, 0, screen_width, screen_height);
-		flappy.render();
+
 
 
 		if (gameState != 0) {
@@ -89,8 +92,15 @@ public class FlappyBird extends ApplicationAdapter {
 			tubes.trimToSize();
 		}
 
+		Rectangle flappyRect = new Rectangle(flappy.x,flappy.y, flappy.sprites[0].getWidth(), flappy.sprites[0].getHeight());
+
 		for (TubePair tube: tubes) {
 			tube.step();
+
+			// Remove later
+			batch.draw(black,tube.x,tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
+			batch.draw(black,tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
+
 			batch.draw(TubePair.bottomSprite,tube.x, tube.bottomTubeY);
 			batch.draw(TubePair.topSprite, tube.x, tube.topTubeY);
 
@@ -98,11 +108,26 @@ public class FlappyBird extends ApplicationAdapter {
 
 			Rectangle topRect = new Rectangle(tube.x, tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
 
+			Rectangle bottomRect = new Rectangle(tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
+
+			if (flappyRect.overlaps(topRect) || flappyRect.overlaps(bottomRect)) {
+				Gdx.app.log("FLAPPY","hitting the tube");
+			}
+
+
+
 
 		}
 
-		batch.end();
 
+
+		flappy.step();
+
+		batch.draw(black,flappy.x - flappy.sprites[0].getWidth() / 2,flappy.y
+				- flappy.sprites[0].getHeight() / 2,flappy.sprites[0].getWidth(),flappy.sprites[0].getHeight());
+
+		flappy.render();
+		batch.end();
 		tubeGenerator.step();
 
 	}
