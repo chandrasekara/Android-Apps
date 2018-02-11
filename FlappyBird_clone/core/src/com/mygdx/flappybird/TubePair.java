@@ -16,6 +16,8 @@ public class TubePair {
 
     public int gap = 400;
 
+    public int speed = 7;
+
 
 
 
@@ -24,12 +26,13 @@ public class TubePair {
         this.x = x_;
         this.offset = offset_;
 
+        
 
     }
 
     public void step() {
 
-        this.x -= 10;
+        this.x -= this.speed;
 
     }
 

@@ -2,6 +2,7 @@ package com.mygdx.flappybird;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Created by dhila on 26/01/2018.
@@ -14,6 +15,8 @@ public class Bird {
     public int x;
     public int y;
     public float velocity;
+
+    public Rectangle rectangle;
 
     SpriteBatch batch;
 
