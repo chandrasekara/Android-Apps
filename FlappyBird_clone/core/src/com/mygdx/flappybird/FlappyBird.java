@@ -73,62 +73,68 @@ public class FlappyBird extends ApplicationAdapter {
 			if (Gdx.input.justTouched()) {
 				flappy.jump();
 			}
+
+
+			// Render all of the tubes that are present on screen
+
+			// Find a way to have this in the same for loop later
+
+			TubePair leftMostTubePair = tubes.get(0);
+
+			if (leftMostTubePair.x < 0 - TubePair.bottomSprite.getWidth()) {
+				tubes.remove(0);
+				tubes.trimToSize();
+			}
+
+			Rectangle flappyRect = new Rectangle(flappy.x,flappy.y, flappy.sprites[0].getWidth(), flappy.sprites[0].getHeight());
+
+			for (TubePair tube: tubes) {
+				tube.step();
+
+				// Remove later
+				batch.draw(black,tube.x,tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
+				batch.draw(black,tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
+
+				batch.draw(TubePair.bottomSprite,tube.x, tube.bottomTubeY);
+				batch.draw(TubePair.topSprite, tube.x, tube.topTubeY);
+
+				// Collision detection here
+
+				Rectangle topRect = new Rectangle(tube.x, tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
+
+				Rectangle bottomRect = new Rectangle(tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
+
+				if (flappyRect.overlaps(topRect) || flappyRect.overlaps(bottomRect)) {
+					Gdx.app.log("FLAPPY","hitting the tube");
+				}
+
+
+
+
+			}
+
+
+
+			flappy.step();
+
+			batch.draw(black,flappy.x - flappy.sprites[0].getWidth() / 2,flappy.y
+					- flappy.sprites[0].getHeight() / 2,flappy.sprites[0].getWidth(),flappy.sprites[0].getHeight());
+
+			flappy.render();
+			tubeGenerator.step();
+
+
 		} else {
 			if (Gdx.input.justTouched()) {
 				Gdx.app.log("Touched", "yep");
 				gameState = 1;
 				flappy.start();
 			}
+			flappy.render();
 		}
 
-		// Render all of the tubes that are present on screen
-
-		// Find a way to have this in the same for loop later
-
-		TubePair leftMostTubePair = tubes.get(0);
-
-		if (leftMostTubePair.x < 0 - TubePair.bottomSprite.getWidth()) {
-			tubes.remove(0);
-			tubes.trimToSize();
-		}
-
-		Rectangle flappyRect = new Rectangle(flappy.x,flappy.y, flappy.sprites[0].getWidth(), flappy.sprites[0].getHeight());
-
-		for (TubePair tube: tubes) {
-			tube.step();
-
-			// Remove later
-			batch.draw(black,tube.x,tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
-			batch.draw(black,tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
-
-			batch.draw(TubePair.bottomSprite,tube.x, tube.bottomTubeY);
-			batch.draw(TubePair.topSprite, tube.x, tube.topTubeY);
-
-			// Collision detection here
-
-			Rectangle topRect = new Rectangle(tube.x, tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
-
-			Rectangle bottomRect = new Rectangle(tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
-
-			if (flappyRect.overlaps(topRect) || flappyRect.overlaps(bottomRect)) {
-				Gdx.app.log("FLAPPY","hitting the tube");
-			}
-
-
-
-
-		}
-
-
-
-		flappy.step();
-
-		batch.draw(black,flappy.x - flappy.sprites[0].getWidth() / 2,flappy.y
-				- flappy.sprites[0].getHeight() / 2,flappy.sprites[0].getWidth(),flappy.sprites[0].getHeight());
-
-		flappy.render();
 		batch.end();
-		tubeGenerator.step();
+
 
 	}
 
