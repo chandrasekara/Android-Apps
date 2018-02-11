@@ -1,5 +1,6 @@
 package com.mygdx.flappybird;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
@@ -9,6 +10,9 @@ import com.badlogic.gdx.graphics.Texture;
 public class TubePair {
 
     public int x;
+    public int topTubeY;
+    public int bottomTubeY;
+
     public static Texture topSprite = new Texture("toptube.png");
     public static Texture bottomSprite = new Texture("bottomtube.png");
 
@@ -26,7 +30,12 @@ public class TubePair {
         this.x = x_;
         this.offset = offset_;
 
-        
+        this.bottomTubeY = Gdx.graphics.getHeight() / 2 - this.gap / 2
+                -  this.bottomSprite.getHeight() + this.offset;
+
+        this.topTubeY = Gdx.graphics.getHeight() / 2 + this.gap / 2 + this.offset;
+
+
 
     }
 

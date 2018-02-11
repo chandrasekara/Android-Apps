@@ -16,7 +16,6 @@ public class Bird {
     public int y;
     public float velocity;
 
-    public Rectangle rectangle;
 
     SpriteBatch batch;
 

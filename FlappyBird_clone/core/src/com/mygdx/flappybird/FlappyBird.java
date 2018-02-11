@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,9 +91,13 @@ public class FlappyBird extends ApplicationAdapter {
 
 		for (TubePair tube: tubes) {
 			tube.step();
-			batch.draw(TubePair.bottomSprite,tube.x, Gdx.graphics.getHeight() / 2 - tube.gap / 2
-					-  tube.bottomSprite.getHeight() + tube.offset );
-			batch.draw(TubePair.topSprite, tube.x, Gdx.graphics.getHeight() / 2 + tube.gap / 2 + tube.offset);
+			batch.draw(TubePair.bottomSprite,tube.x, tube.bottomTubeY);
+			batch.draw(TubePair.topSprite, tube.x, tube.topTubeY);
+
+			// Collision detection here
+
+			//Rectangle topRect = new Rectangle(tube.x)
+
 		}
 
 		batch.end();
