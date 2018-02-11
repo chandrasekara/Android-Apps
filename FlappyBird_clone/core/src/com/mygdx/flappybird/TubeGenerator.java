@@ -78,7 +78,7 @@ public class TubeGenerator {
             FPS = 80; //magic numbers, change later
         }
 
-        if (counter > FPS) {
+        if (counter > FPS * 1.2) {
 
             this.game.addTubePair( generateTube()  );
 

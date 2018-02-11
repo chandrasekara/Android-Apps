@@ -96,7 +96,8 @@ public class FlappyBird extends ApplicationAdapter {
 
 			// Collision detection here
 
-			//Rectangle topRect = new Rectangle(tube.x)
+			Rectangle topRect = new Rectangle(tube.x, tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
+
 
 		}
 
