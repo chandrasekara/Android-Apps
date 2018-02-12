@@ -1,0 +1,3 @@
+Should batch all step methods and render methods together, so that when the game stops,
+ie. you hit a tube, you can stop calling the step methods of the tubes / other objects,
+but still see them fixed in that position
