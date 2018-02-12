@@ -20,7 +20,7 @@ public class TubePair {
 
     public int gap = 400;
 
-    public int speed = 7;
+    public int speed = 4;
 
 
 

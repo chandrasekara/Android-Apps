@@ -2,10 +2,14 @@ package com.mygdx.flappybird;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
@@ -58,6 +62,8 @@ public class FlappyBird extends ApplicationAdapter {
 	@Override
 	public void render () {
 
+
+
 		// Remove later
 		Texture black = new Texture("black.png");
 
@@ -68,8 +74,6 @@ public class FlappyBird extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(background, 0, 0, screen_width, screen_height);
 
-		
-
 		if (gameState != 0) {
 			if (Gdx.input.justTouched()) {
 				flappy.jump();
@@ -77,8 +81,11 @@ public class FlappyBird extends ApplicationAdapter {
 
 			flappy.step();
 
-			batch.draw(black,flappy.x - flappy.sprites[0].getWidth() / 2,flappy.y
-					- flappy.sprites[0].getHeight() / 2,flappy.sprites[0].getWidth(),flappy.sprites[0].getHeight());
+			//batch.draw(black,flappy.x - flappy.sprites[0].getWidth() / 2,flappy.y
+			//		- flappy.sprites[0].getHeight() / 2,flappy.sprites[0].getWidth(),flappy.sprites[0].getHeight());
+
+
+
 
 			flappy.render();
 			tubeGenerator.step();
@@ -113,7 +120,15 @@ public class FlappyBird extends ApplicationAdapter {
 
 				Rectangle bottomRect = new Rectangle(tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
 
+				/*
 				if (flappyRect.overlaps(topRect) || flappyRect.overlaps(bottomRect)) {
+					Gdx.app.log("FLAPPY","hitting the tube");
+				}
+				*/
+
+				Intersector intersector = new Intersector();
+
+				if (intersector.overlaps(flappy.boundingCircle,topRect) || intersector.overlaps(flappy.boundingCircle,bottomRect) ) {
 					Gdx.app.log("FLAPPY","hitting the tube");
 				}
 
@@ -134,6 +149,14 @@ public class FlappyBird extends ApplicationAdapter {
 		}
 
 		batch.end();
+		/*
+		ShapeRenderer shapeRenderer = new ShapeRenderer();
+
+		shapeRenderer.setColor(Color.BLACK);
+		shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+		shapeRenderer.circle(flappy.x - flappy.sprites[0].getWidth() / 2, flappy.y - flappy.sprites[0].getHeight() / , flappy.sprites[0].getWidth() / 2);
+		shapeRenderer.end();
+		*/
 
 
 	}

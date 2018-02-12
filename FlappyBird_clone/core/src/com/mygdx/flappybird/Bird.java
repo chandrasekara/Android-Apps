@@ -2,6 +2,7 @@ package com.mygdx.flappybird;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -23,6 +24,8 @@ public class Bird {
 
     int frameCount;
 
+    Circle boundingCircle;
+
 
 
     public Bird (SpriteBatch batch_in) {
@@ -42,6 +45,8 @@ public class Bird {
         velocity = 0;
 
         frameCount = 0;
+
+        this.boundingCircle = new Circle(this.x,this.y,sprites[0].getWidth()/2);
         
     }
 
@@ -89,6 +94,9 @@ public class Bird {
             y += velocity;
 
         }
+
+        //this.boundingCircle.setX(this.x - sprites[0].getWidth() / 2);
+        this.boundingCircle.setY(this.y);
 
     }
 
