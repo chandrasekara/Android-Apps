@@ -81,7 +81,7 @@ public class Bird {
     public void jump() {
 
         if (y < FlappyBird.screen_height) {
-            velocity = 15;
+            velocity = 25;
         }
 
     }

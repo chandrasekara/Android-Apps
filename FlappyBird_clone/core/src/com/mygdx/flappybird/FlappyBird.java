@@ -27,7 +27,7 @@ public class FlappyBird extends ApplicationAdapter {
 
 	static int screen_width = 0;
 	static int screen_height = 0;
-	static float gravity = 0.8f;
+	static float gravity = 1.3f;
 
 	int tubeXPos;
 	int gameState = 0;
