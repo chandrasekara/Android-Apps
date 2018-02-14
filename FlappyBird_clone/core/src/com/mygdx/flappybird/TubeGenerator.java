@@ -95,6 +95,8 @@ public class TubeGenerator {
 
         int maxOffset = (TubePair.topSprite.getHeight() - (FlappyBird.screen_height/2));
 
+        maxOffset = (int)(maxOffset * 0.75);
+
         return new TubePair(FlappyBird.screen_width + TubePair.topSprite.getWidth(),
                 randomNum.nextInt(maxOffset*2)-maxOffset);
 
