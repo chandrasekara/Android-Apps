@@ -91,10 +91,14 @@ public class Bird {
 
         //sprites[flapSpriteState].draw(batch);
 
-        if (velocity > 0) {
+        if (velocity > -15) {
             sprites[flapSpriteState].setRotation(45);
         } else {
-            sprites[flapSpriteState].setRotation(0);
+            float theta = 45 + 4 * velocity;
+            if (theta < -90) {
+                theta = -90;
+            }
+            sprites[flapSpriteState].setRotation(theta);
         }
 
 
@@ -148,6 +152,8 @@ public class Bird {
             y += velocity;
 
         }
+
+
 
         //this.boundingCircle.setX(this.x - sprites[0].getWidth() / 2);
         this.boundingCircle.setY(this.y);
