@@ -93,9 +93,9 @@ public class Bird {
 
         // abstract these magic numbers later
         if (velocity > -22) {
-            sprites[flapSpriteState].setRotation(45);
+            sprites[flapSpriteState].setRotation(20);
         } else {
-            float theta = 45 + 4 * velocity;
+            float theta = 20 + 4 * (velocity + 22);
             if (theta < -90) {
                 theta = -90;
             }
