@@ -30,7 +30,7 @@ public class FlappyBird extends ApplicationAdapter {
 	static float gravity = 1.3f;
 
 	int tubeXPos;
-	int gameState = 0;
+	public static int gameState = 0;
 
 	Bird flappy;
 	ArrayList<TubePair> tubes;
@@ -168,6 +168,7 @@ public class FlappyBird extends ApplicationAdapter {
 		tubes.add(tubePairIn);
 
 	}
+
 	/*
 	@Override
 	public void dispose () {

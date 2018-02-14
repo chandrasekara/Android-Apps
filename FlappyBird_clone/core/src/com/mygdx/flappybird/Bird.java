@@ -91,7 +91,8 @@ public class Bird {
 
         //sprites[flapSpriteState].draw(batch);
 
-        if (velocity > -15) {
+        // abstract these magic numbers later
+        if (velocity > -22) {
             sprites[flapSpriteState].setRotation(45);
         } else {
             float theta = 45 + 4 * velocity;
@@ -99,6 +100,10 @@ public class Bird {
                 theta = -90;
             }
             sprites[flapSpriteState].setRotation(theta);
+        }
+
+        if (FlappyBird.gameState == 0) {
+            sprites[flapSpriteState].setRotation(0);
         }
 
 
