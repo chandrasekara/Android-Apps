@@ -1,6 +1,8 @@
 package com.mygdx.flappybird;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -12,7 +14,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Bird {
 
-    Texture[] sprites;
+    Sprite[] sprites;
     public int x;
     public int y;
     public float velocity;
@@ -30,10 +32,10 @@ public class Bird {
 
     public Bird (SpriteBatch batch_in) {
 
-        sprites = new Texture[2];
+        sprites = new Sprite[2];
 
-        sprites[0] = new Texture("bird.png");
-        sprites[1] = new Texture("bird2.png");
+        sprites[0] = new Sprite(new Texture("bird.png"));
+        sprites[1] = new Sprite(new Texture("bird2.png"));
 
         x = FlappyBird.screen_width/2;
         y = FlappyBird.screen_height/2;
@@ -47,7 +49,12 @@ public class Bird {
         frameCount = 0;
 
         this.boundingCircle = new Circle(this.x,this.y,sprites[0].getWidth()/2);
-        
+
+        sprites[0].setX(x - sprites[0].getWidth() / 2);
+        sprites[0].setY(y - sprites[0].getWidth() / 2); //CHANGE THIS TO CENTRE COORDINATES LATER
+
+
+
     }
 
     public void start() {
@@ -70,10 +77,57 @@ public class Bird {
             }
         }
 
+        int xCentre = (int)(x - sprites[0].getWidth()/2);
+        int yCentre = (int)(y - sprites[0].getHeight()/2);
 
-        batch.draw(sprites[flapSpriteState],x - sprites[0].getWidth()/2,y -
-                sprites[0].getHeight()/2);
+        //batch.draw(sprites[flapSpriteState],xCentre,yCentre);
 
+
+
+
+        sprites[flapSpriteState].setX(xCentre);
+        sprites[flapSpriteState].setY(yCentre);
+
+
+        //sprites[flapSpriteState].draw(batch);
+
+        if (velocity > 0) {
+            sprites[flapSpriteState].setRotation(45);
+        } else {
+            sprites[flapSpriteState].setRotation(0);
+        }
+
+
+        sprites[flapSpriteState].draw(batch);
+
+
+        /*
+        Sprite sprite = new Sprite(sprites[flapSpriteState]);
+
+        sprite.setX(xCentre);
+        sprite.setY(yCentre);
+
+        if (velocity > 0) {
+            sprite.setRotation(45);
+        }
+
+        sprite.draw(batch);
+
+        */
+
+        /*
+        if (this.velocity > 0) {
+            Gdx.app.log("jumping","nyess");
+            //batch.draw(sprites[flapSpriteState],xCentre+50,yCentre);
+            batch.draw(sprites[0], xCentre+50, yCentre, 32, 32, sprites[flapSpriteState].getWidth(),
+                    sprites[flapSpriteState].getHeight(),1,1,45,xCentre,yCentre,32,32,false,true);
+        }
+        */
+        /*
+        draw(Texture texture, float x, float y, float originX, float originY, float width,
+        float height, float scaleX, float scaleY, float rotation, int srcX, int srcY,
+        int srcWidth, int srcHeight, boolean flipX, boolean flipY)
+        */
 
 
     }

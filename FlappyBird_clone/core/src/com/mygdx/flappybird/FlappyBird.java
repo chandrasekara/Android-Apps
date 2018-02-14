@@ -95,11 +95,13 @@ public class FlappyBird extends ApplicationAdapter {
 
 			// Find a way to have this in the same for loop later
 
-			TubePair leftMostTubePair = tubes.get(0);
+			if (tubes.size() > 0) {
+				TubePair leftMostTubePair = tubes.get(0);
 
-			if (leftMostTubePair.x < 0 - TubePair.bottomSprite.getWidth()) {
-				tubes.remove(0);
-				tubes.trimToSize();
+				if (leftMostTubePair.x < 0 - TubePair.bottomSprite.getWidth()) {
+					tubes.remove(0);
+					tubes.trimToSize();
+				}
 			}
 
 			Rectangle flappyRect = new Rectangle(flappy.x,flappy.y, flappy.sprites[0].getWidth(), flappy.sprites[0].getHeight());
