@@ -19,6 +19,11 @@ public class Bird {
     public int y;
     public float velocity;
 
+    public final int faceUpVelocity = 17;
+    public final int faceUpRotation = 20;
+    public final int rateOfDownwardRotation = 5;
+    public final int maxDownwardRotation = 90;
+
 
     SpriteBatch batch;
 
@@ -80,24 +85,16 @@ public class Bird {
         int xCentre = (int)(x - sprites[0].getWidth()/2);
         int yCentre = (int)(y - sprites[0].getHeight()/2);
 
-        //batch.draw(sprites[flapSpriteState],xCentre,yCentre);
-
-
-
-
         sprites[flapSpriteState].setX(xCentre);
         sprites[flapSpriteState].setY(yCentre);
 
-
-        //sprites[flapSpriteState].draw(batch);
-
         // abstract these magic numbers later
-        if (velocity > -22) {
-            sprites[flapSpriteState].setRotation(20);
+        if (velocity > -faceUpVelocity) {
+            sprites[flapSpriteState].setRotation(faceUpRotation);
         } else {
-            float theta = 20 + 4 * (velocity + 22);
-            if (theta < -90) {
-                theta = -90;
+            float theta = faceUpRotation + rateOfDownwardRotation * (velocity + faceUpVelocity);
+            if (theta < -maxDownwardRotation) {
+                theta = -maxDownwardRotation;
             }
             sprites[flapSpriteState].setRotation(theta);
         }
@@ -108,35 +105,6 @@ public class Bird {
 
 
         sprites[flapSpriteState].draw(batch);
-
-
-        /*
-        Sprite sprite = new Sprite(sprites[flapSpriteState]);
-
-        sprite.setX(xCentre);
-        sprite.setY(yCentre);
-
-        if (velocity > 0) {
-            sprite.setRotation(45);
-        }
-
-        sprite.draw(batch);
-
-        */
-
-        /*
-        if (this.velocity > 0) {
-            Gdx.app.log("jumping","nyess");
-            //batch.draw(sprites[flapSpriteState],xCentre+50,yCentre);
-            batch.draw(sprites[0], xCentre+50, yCentre, 32, 32, sprites[flapSpriteState].getWidth(),
-                    sprites[flapSpriteState].getHeight(),1,1,45,xCentre,yCentre,32,32,false,true);
-        }
-        */
-        /*
-        draw(Texture texture, float x, float y, float originX, float originY, float width,
-        float height, float scaleX, float scaleY, float rotation, int srcX, int srcY,
-        int srcWidth, int srcHeight, boolean flipX, boolean flipY)
-        */
 
 
     }
