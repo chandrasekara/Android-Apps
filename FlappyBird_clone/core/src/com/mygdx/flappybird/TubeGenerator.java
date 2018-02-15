@@ -39,37 +39,6 @@ public class TubeGenerator {
     public void step() {
         // This method is aimed to be called at every frame
 
-        /*
-
-
-        import java.util.Timer
-
-        Timer
-        timer.schedule(new TimerTask() {
-  @Override
-  public void run() {
-    // Your database code here
-  }
-}, 2*60*1000);
-         */
-
-        /*
-        if (createTube == true) {
-
-            createTube = false;
-
-            timer.scheduleAtFixedRate(new TimerTask() {
-
-                public void run() {
-                    game.addTubePair( generateTube()  );
-                    createTube = true;
-
-                }
-            }, 2 * 1000, 2000);
-        }
-
-        */
-
         counter += 1;
 
         int FPS = Gdx.graphics.getFramesPerSecond();
@@ -91,7 +60,6 @@ public class TubeGenerator {
     public TubePair generateTube() {
 
         Random randomNum = new Random();
-
 
         int maxOffset = (TubePair.topSprite.getHeight() - (FlappyBird.screen_height/2));
 

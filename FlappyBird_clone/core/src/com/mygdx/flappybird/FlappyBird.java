@@ -62,11 +62,6 @@ public class FlappyBird extends ApplicationAdapter {
 	@Override
 	public void render () {
 
-
-
-		// Remove later
-		Texture black = new Texture("black.png");
-
 		//Remove later
 		framesPerSecond = Gdx.graphics.getFramesPerSecond();
 		Gdx.app.log("MyTag", Integer.toString(framesPerSecond));
@@ -80,16 +75,8 @@ public class FlappyBird extends ApplicationAdapter {
 			}
 
 			flappy.step();
-
-			//batch.draw(black,flappy.x - flappy.sprites[0].getWidth() / 2,flappy.y
-			//		- flappy.sprites[0].getHeight() / 2,flappy.sprites[0].getWidth(),flappy.sprites[0].getHeight());
-
-
-
-
 			flappy.render();
 			tubeGenerator.step();
-
 
 			// Render all of the tubes that are present on screen
 
@@ -109,10 +96,6 @@ public class FlappyBird extends ApplicationAdapter {
 			for (TubePair tube: tubes) {
 				tube.step();
 
-				// Remove later
-				batch.draw(black,tube.x,tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
-				batch.draw(black,tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
-
 				batch.draw(TubePair.bottomSprite,tube.x, tube.bottomTubeY);
 				batch.draw(TubePair.topSprite, tube.x, tube.topTubeY);
 
@@ -122,24 +105,13 @@ public class FlappyBird extends ApplicationAdapter {
 
 				Rectangle bottomRect = new Rectangle(tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
 
-				/*
-				if (flappyRect.overlaps(topRect) || flappyRect.overlaps(bottomRect)) {
-					Gdx.app.log("FLAPPY","hitting the tube");
-				}
-				*/
-
 				Intersector intersector = new Intersector();
 
 				if (intersector.overlaps(flappy.boundingCircle,topRect) || intersector.overlaps(flappy.boundingCircle,bottomRect) ) {
 					Gdx.app.log("FLAPPY","hitting the tube");
 				}
 
-
-
-
 			}
-
-
 
 		} else {
 			if (Gdx.input.justTouched()) {
@@ -151,15 +123,6 @@ public class FlappyBird extends ApplicationAdapter {
 		}
 
 		batch.end();
-		/*
-		ShapeRenderer shapeRenderer = new ShapeRenderer();
-
-		shapeRenderer.setColor(Color.BLACK);
-		shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-		shapeRenderer.circle(flappy.x - flappy.sprites[0].getWidth() / 2, flappy.y - flappy.sprites[0].getHeight() / , flappy.sprites[0].getWidth() / 2);
-		shapeRenderer.end();
-		*/
-
 
 	}
 

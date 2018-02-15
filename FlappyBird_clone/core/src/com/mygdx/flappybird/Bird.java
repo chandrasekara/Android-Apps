@@ -72,7 +72,6 @@ public class Bird {
 
         frameCount += 1;
 
-
         if (frameCount > 5) {
             frameCount = 0;
             if (flapSpriteState == 0) {
@@ -88,7 +87,6 @@ public class Bird {
         sprites[flapSpriteState].setX(xCentre);
         sprites[flapSpriteState].setY(yCentre);
 
-        // abstract these magic numbers later
         if (velocity > -faceUpVelocity) {
             sprites[flapSpriteState].setRotation(faceUpRotation);
         } else {
@@ -126,9 +124,6 @@ public class Bird {
 
         }
 
-
-
-        //this.boundingCircle.setX(this.x - sprites[0].getWidth() / 2);
         this.boundingCircle.setY(this.y);
 
     }

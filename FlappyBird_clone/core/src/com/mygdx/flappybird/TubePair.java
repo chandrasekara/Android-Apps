@@ -35,8 +35,6 @@ public class TubePair {
 
         this.topTubeY = Gdx.graphics.getHeight() / 2 + this.gap / 2 + this.offset;
 
-
-
     }
 
     public void step() {
