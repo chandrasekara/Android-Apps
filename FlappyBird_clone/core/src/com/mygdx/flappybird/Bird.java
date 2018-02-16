@@ -70,39 +70,57 @@ public class Bird {
 
     public void render() {
 
-        frameCount += 1;
+        if (FlappyBird.hitTube == false) {
 
-        if (frameCount > 5) {
-            frameCount = 0;
-            if (flapSpriteState == 0) {
-                flapSpriteState = 1;
+            frameCount += 1;
+
+            if (frameCount > 5) {
+                frameCount = 0;
+                if (flapSpriteState == 0) {
+                    flapSpriteState = 1;
+                } else {
+                    flapSpriteState = 0;
+                }
+            }
+
+            int xCentre = (int) (x - sprites[0].getWidth() / 2);
+            int yCentre = (int) (y - sprites[0].getHeight() / 2);
+
+            sprites[flapSpriteState].setX(xCentre);
+            sprites[flapSpriteState].setY(yCentre);
+
+            if (velocity > -faceUpVelocity) {
+                sprites[flapSpriteState].setRotation(faceUpRotation);
             } else {
-                flapSpriteState = 0;
+                float theta = faceUpRotation + rateOfDownwardRotation * (velocity + faceUpVelocity);
+                if (theta < -maxDownwardRotation) {
+                    theta = -maxDownwardRotation;
+                }
+                sprites[flapSpriteState].setRotation(theta);
             }
-        }
 
-        int xCentre = (int)(x - sprites[0].getWidth()/2);
-        int yCentre = (int)(y - sprites[0].getHeight()/2);
+            if (FlappyBird.gameState == 0) {
+                sprites[flapSpriteState].setRotation(0);
+            }
 
-        sprites[flapSpriteState].setX(xCentre);
-        sprites[flapSpriteState].setY(yCentre);
 
-        if (velocity > -faceUpVelocity) {
-            sprites[flapSpriteState].setRotation(faceUpRotation);
+            sprites[flapSpriteState].draw(batch);
         } else {
-            float theta = faceUpRotation + rateOfDownwardRotation * (velocity + faceUpVelocity);
-            if (theta < -maxDownwardRotation) {
-                theta = -maxDownwardRotation;
+            /*
+            sprites[flapSpriteState].setRotation(-90);
+            velocity = -10;
+            step();
+            */
+
+            //declare 10 as deadFallDownVelocity
+            sprites[flapSpriteState].setRotation(-90);
+            if (sprites[flapSpriteState].getY() > 0) {
+                sprites[flapSpriteState].setY(sprites[flapSpriteState].getY()-10);
             }
-            sprites[flapSpriteState].setRotation(theta);
+
+            sprites[flapSpriteState].draw(batch);
+
         }
-
-        if (FlappyBird.gameState == 0) {
-            sprites[flapSpriteState].setRotation(0);
-        }
-
-
-        sprites[flapSpriteState].draw(batch);
 
 
     }

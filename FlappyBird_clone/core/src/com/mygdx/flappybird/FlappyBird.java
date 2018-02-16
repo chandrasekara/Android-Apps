@@ -39,6 +39,7 @@ public class FlappyBird extends ApplicationAdapter {
 
 	TubeGenerator tubeGenerator;
 
+	public static boolean hitTube = false;
 
 
 	@Override
@@ -76,8 +77,9 @@ public class FlappyBird extends ApplicationAdapter {
 
 			flappy.step();
 			flappy.render();
-			tubeGenerator.step();
-
+			if (hitTube == false) {
+				tubeGenerator.step();
+			}
 			// Render all of the tubes that are present on screen
 
 			// Find a way to have this in the same for loop later
@@ -94,7 +96,10 @@ public class FlappyBird extends ApplicationAdapter {
 			Rectangle flappyRect = new Rectangle(flappy.x,flappy.y, flappy.sprites[0].getWidth(), flappy.sprites[0].getHeight());
 
 			for (TubePair tube: tubes) {
-				tube.step();
+
+				if (hitTube == false) {
+					tube.step();
+				}
 
 				batch.draw(TubePair.bottomSprite,tube.x, tube.bottomTubeY);
 				batch.draw(TubePair.topSprite, tube.x, tube.topTubeY);
@@ -109,6 +114,7 @@ public class FlappyBird extends ApplicationAdapter {
 
 				if (intersector.overlaps(flappy.boundingCircle,topRect) || intersector.overlaps(flappy.boundingCircle,bottomRect) ) {
 					Gdx.app.log("FLAPPY","hitting the tube");
+					hitTube = true;
 				}
 
 			}
