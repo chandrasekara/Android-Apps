@@ -19,10 +19,13 @@ public class Bird {
     public int y;
     public float velocity;
 
+    public final int jumpVelocity = 25;
     public final int faceUpVelocity = 17;
     public final int faceUpRotation = 20;
     public final int rateOfDownwardRotation = 5;
     public final int maxDownwardRotation = 90;
+    public final int deadFallDownVelocity = 10;
+    public final int fallRotation = -90;
 
 
     SpriteBatch batch;
@@ -32,8 +35,6 @@ public class Bird {
     int frameCount;
 
     Circle boundingCircle;
-
-
 
     public Bird (SpriteBatch batch_in) {
 
@@ -56,9 +57,7 @@ public class Bird {
         this.boundingCircle = new Circle(this.x,this.y,sprites[0].getWidth()/2);
 
         sprites[0].setX(x - sprites[0].getWidth() / 2);
-        sprites[0].setY(y - sprites[0].getWidth() / 2); //CHANGE THIS TO CENTRE COORDINATES LATER
-
-
+        sprites[0].setY(y - sprites[0].getWidth() / 2);
 
     }
 
@@ -106,29 +105,23 @@ public class Bird {
 
             sprites[flapSpriteState].draw(batch);
         } else {
-            /*
-            sprites[flapSpriteState].setRotation(-90);
-            velocity = -10;
-            step();
-            */
 
-            //declare 10 as deadFallDownVelocity
-            sprites[flapSpriteState].setRotation(-90);
+
+            sprites[flapSpriteState].setRotation(fallRotation);
             if (sprites[flapSpriteState].getY() > 0) {
-                sprites[flapSpriteState].setY(sprites[flapSpriteState].getY()-10);
+                sprites[flapSpriteState].setY(sprites[flapSpriteState].getY()-deadFallDownVelocity);
             }
 
             sprites[flapSpriteState].draw(batch);
 
         }
 
-
     }
 
     public void jump() {
 
         if (y < FlappyBird.screen_height) {
-            velocity = 25;
+            velocity = jumpVelocity;
         }
 
     }
@@ -145,7 +138,5 @@ public class Bird {
         this.boundingCircle.setY(this.y);
 
     }
-
-
 
 }
