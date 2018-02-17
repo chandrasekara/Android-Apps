@@ -75,8 +75,7 @@ public class FlappyBird extends ApplicationAdapter {
 				flappy.jump();
 			}
 
-			flappy.step();
-			flappy.render();
+
 			if (hitTube == false) {
 				tubeGenerator.step();
 			}
@@ -107,9 +106,7 @@ public class FlappyBird extends ApplicationAdapter {
 				// Collision detection here
 
 				Rectangle topRect = new Rectangle(tube.x, tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
-
 				Rectangle bottomRect = new Rectangle(tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
-
 				Intersector intersector = new Intersector();
 
 				if (intersector.overlaps(flappy.boundingCircle,topRect) || intersector.overlaps(flappy.boundingCircle,bottomRect) ) {
@@ -118,6 +115,9 @@ public class FlappyBird extends ApplicationAdapter {
 				}
 
 			}
+
+			flappy.step();
+			flappy.render();
 
 		} else {
 			if (Gdx.input.justTouched()) {

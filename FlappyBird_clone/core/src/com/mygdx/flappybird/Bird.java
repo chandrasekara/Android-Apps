@@ -36,6 +36,8 @@ public class Bird {
 
     Circle boundingCircle;
 
+    public Texture gameOver;
+
     public Bird (SpriteBatch batch_in) {
 
         sprites = new Sprite[2];
@@ -58,6 +60,8 @@ public class Bird {
 
         sprites[0].setX(x - sprites[0].getWidth() / 2);
         sprites[0].setY(y - sprites[0].getWidth() / 2);
+
+        gameOver = new Texture("gameover.png");
 
     }
 
@@ -107,6 +111,7 @@ public class Bird {
         } else {
 
 
+
             sprites[flapSpriteState].setRotation(fallRotation);
             if (sprites[flapSpriteState].getY() > 0) {
                 sprites[flapSpriteState].setY(sprites[flapSpriteState].getY()-deadFallDownVelocity);
@@ -114,6 +119,9 @@ public class Bird {
 
             sprites[flapSpriteState].draw(batch);
 
+            batch.draw(gameOver,FlappyBird.screen_width / 2 - gameOver.getWidth() * 3 / 2,
+                    FlappyBird.screen_height / 2 - gameOver.getHeight() * 3 / 2,
+                    gameOver.getWidth() *  3, gameOver.getHeight() * 3);
         }
 
     }
