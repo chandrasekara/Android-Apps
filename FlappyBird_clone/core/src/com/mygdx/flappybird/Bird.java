@@ -38,7 +38,10 @@ public class Bird {
 
     public Texture gameOver;
 
-    public Bird (SpriteBatch batch_in) {
+    public boolean restart = false;
+
+
+    public Bird (SpriteBatch batchIn) {
 
         sprites = new Sprite[2];
 
@@ -48,7 +51,7 @@ public class Bird {
         x = FlappyBird.screen_width/2;
         y = FlappyBird.screen_height/2;
 
-        this.batch = batch_in;
+        this.batch = batchIn;
 
         flapSpriteState = 0;
 
@@ -62,6 +65,7 @@ public class Bird {
         sprites[0].setY(y - sprites[0].getWidth() / 2);
 
         gameOver = new Texture("gameover.png");
+
 
     }
 
@@ -122,6 +126,13 @@ public class Bird {
             batch.draw(gameOver,FlappyBird.screen_width / 2 - gameOver.getWidth() * 3 / 2,
                     FlappyBird.screen_height / 2 - gameOver.getHeight() * 3 / 2,
                     gameOver.getWidth() *  3, gameOver.getHeight() * 3);
+
+            if (sprites[flapSpriteState].getY() <= 0) {
+                if (Gdx.input.justTouched()) {
+                    restart = true;
+                    //velocity = 0;
+                }
+            }
         }
 
     }

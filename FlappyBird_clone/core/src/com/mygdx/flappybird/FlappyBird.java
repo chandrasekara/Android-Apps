@@ -39,7 +39,7 @@ public class FlappyBird extends ApplicationAdapter {
 
 	TubeGenerator tubeGenerator;
 
-	public static boolean hitTube = false;
+	public static boolean hitTube;
 
 
 	@Override
@@ -55,6 +55,8 @@ public class FlappyBird extends ApplicationAdapter {
 
 
 		tubeGenerator = new TubeGenerator(2, this);
+
+		hitTube = false;
 
 
 
@@ -129,6 +131,11 @@ public class FlappyBird extends ApplicationAdapter {
 		}
 
 		batch.end();
+
+		if (flappy.restart == true) {
+			create();
+			gameState = 0;
+		}
 
 	}
 
