@@ -45,6 +45,8 @@ public class FlappyBird extends ApplicationAdapter {
 
 	public int score;
 
+	public ScoreManager scoreManager;
+
 	//change attrs that should be private to private later :)
 
 
@@ -65,6 +67,8 @@ public class FlappyBird extends ApplicationAdapter {
 		hitTube = false;
 
 		score = 0;
+
+		scoreManager = new ScoreManager();
 
 	}
 
@@ -133,6 +137,9 @@ public class FlappyBird extends ApplicationAdapter {
 			flappy.step();
 			flappy.render();
 
+			//TEMP
+			drawScore();
+
 		} else {
 			if (Gdx.input.justTouched()) {
 				Gdx.app.log("Touched", "yep");
@@ -154,6 +161,29 @@ public class FlappyBird extends ApplicationAdapter {
 	public void addTubePair(TubePair tubePairIn) {
 
 		tubes.add(tubePairIn);
+
+	}
+
+	public void drawScore() {
+
+		int tens;
+		int ones;
+
+		ones = score % 10;
+
+		tens = score / 10;
+
+		//abstract these magic numbers later
+		batch.draw(scoreManager.numbers[ones], 50 + scoreManager.numbers[0].getWidth()*3
+				,50, scoreManager.numbers[ones].getWidth() * 3, scoreManager
+						.numbers[ones].getHeight() * 3);
+
+		if (tens != 0) {
+			batch.draw(scoreManager.numbers[tens], 50
+					,50, scoreManager.numbers[tens].getWidth() * 3, scoreManager
+							.numbers[tens].getHeight() * 3);
+		}
+
 
 	}
 
