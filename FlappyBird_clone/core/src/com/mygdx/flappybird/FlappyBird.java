@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
@@ -17,6 +18,7 @@ import java.util.Date;
 import java.util.Random;
 
 
+import sun.font.TrueTypeFont;
 import sun.rmi.runtime.Log;
 
 public class FlappyBird extends ApplicationAdapter {
@@ -41,6 +43,10 @@ public class FlappyBird extends ApplicationAdapter {
 
 	public static boolean hitTube;
 
+	public int score;
+
+	//change attrs that should be private to private later :)
+
 
 	@Override
 	public void create () {
@@ -58,12 +64,15 @@ public class FlappyBird extends ApplicationAdapter {
 
 		hitTube = false;
 
-
+		score = 0;
 
 	}
 
 	@Override
 	public void render () {
+
+
+		Gdx.app.log("Score",Integer.toString(score));
 
 		//Remove later
 		framesPerSecond = Gdx.graphics.getFramesPerSecond();
@@ -100,6 +109,9 @@ public class FlappyBird extends ApplicationAdapter {
 
 				if (hitTube == false) {
 					tube.step();
+					if (tube.shouldScoreBeAwarded(flappy.x)) {
+						score++;
+					}
 				}
 
 				batch.draw(TubePair.bottomSprite,tube.x, tube.bottomTubeY);

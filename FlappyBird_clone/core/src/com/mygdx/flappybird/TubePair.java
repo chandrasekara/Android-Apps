@@ -22,8 +22,7 @@ public class TubePair {
 
     public int speed = 8;
 
-
-
+    public boolean thisTubeHasScored = false;
 
 
     public TubePair(int x_, int offset_) {
@@ -40,6 +39,18 @@ public class TubePair {
     public void step() {
 
         this.x -= this.speed;
+
+    }
+
+    public boolean shouldScoreBeAwarded(int flappyX) {
+        if (thisTubeHasScored == true) {
+            return false;
+        }
+        if (flappyX > this.x + topSprite.getWidth()) {
+            thisTubeHasScored = true;
+            return true;
+        }
+        return false;
 
     }
 
