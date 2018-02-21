@@ -72,7 +72,7 @@ public class FlappyBird extends ApplicationAdapter {
 
 		scoreManager = new ScoreManager();
 
-		restartButton = new Texture("restartbutton.png");
+		restartButton = new Texture("replaybutton.png");
 
 	}
 

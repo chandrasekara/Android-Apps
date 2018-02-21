@@ -136,7 +136,7 @@ public class Bird {
 
             batch.draw(FlappyBird.restartButton,FlappyBird.screen_width/2 -
                     FlappyBird.restartButton.getWidth()/2, FlappyBird.screen_height/2
-                    - FlappyBird.restartButton.getHeight()/2 - 150);
+                    - FlappyBird.restartButton.getHeight()/2 - 250);
         }
 
     }
