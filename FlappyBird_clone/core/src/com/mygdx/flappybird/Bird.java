@@ -133,6 +133,10 @@ public class Bird {
                     //velocity = 0;
                 }
             }
+
+            batch.draw(FlappyBird.restartButton,FlappyBird.screen_width/2 -
+                    FlappyBird.restartButton.getWidth()/2, FlappyBird.screen_height/2
+                    - FlappyBird.restartButton.getHeight()/2 - 150);
         }
 
     }

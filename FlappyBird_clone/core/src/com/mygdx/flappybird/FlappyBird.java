@@ -47,6 +47,8 @@ public class FlappyBird extends ApplicationAdapter {
 
 	public ScoreManager scoreManager;
 
+	public static Texture restartButton;
+
 	//change attrs that should be private to private later :)
 
 
@@ -69,6 +71,8 @@ public class FlappyBird extends ApplicationAdapter {
 		score = 0;
 
 		scoreManager = new ScoreManager();
+
+		restartButton = new Texture("restartbutton.png");
 
 	}
 
