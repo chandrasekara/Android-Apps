@@ -80,11 +80,11 @@ public class FlappyBird extends ApplicationAdapter {
 	public void render () {
 
 
-		Gdx.app.log("Score",Integer.toString(score));
+		//Gdx.app.log("Score",Integer.toString(score));
 
 		//Remove later
 		framesPerSecond = Gdx.graphics.getFramesPerSecond();
-		Gdx.app.log("MyTag", Integer.toString(framesPerSecond));
+		//Gdx.app.log("MyTag", Integer.toString(framesPerSecond));
 
 		batch.begin();
 		batch.draw(background, 0, 0, screen_width, screen_height);
@@ -132,7 +132,7 @@ public class FlappyBird extends ApplicationAdapter {
 				Intersector intersector = new Intersector();
 
 				if (intersector.overlaps(flappy.boundingCircle,topRect) || intersector.overlaps(flappy.boundingCircle,bottomRect) ) {
-					Gdx.app.log("FLAPPY","hitting the tube");
+					//Gdx.app.log("FLAPPY","hitting the tube");
 					hitTube = true;
 				}
 
@@ -146,7 +146,6 @@ public class FlappyBird extends ApplicationAdapter {
 
 		} else {
 			if (Gdx.input.justTouched()) {
-				Gdx.app.log("Touched", "yep");
 				gameState = 1;
 				flappy.start();
 			}

@@ -114,8 +114,7 @@ public class Bird {
             sprites[flapSpriteState].draw(batch);
         } else {
 
-
-
+            //move to separate class
             sprites[flapSpriteState].setRotation(fallRotation);
             if (sprites[flapSpriteState].getY() > 0) {
                 sprites[flapSpriteState].setY(sprites[flapSpriteState].getY()-deadFallDownVelocity);
@@ -127,16 +126,23 @@ public class Bird {
                     FlappyBird.screen_height / 2 - gameOver.getHeight() * 3 / 2,
                     gameOver.getWidth() *  3, gameOver.getHeight() * 3);
 
-            if (sprites[flapSpriteState].getY() <= 0) {
-                if (Gdx.input.justTouched()) {
+            int restartX = FlappyBird.screen_width/2 -
+                    FlappyBird.restartButton.getWidth()/2;
+            int restartY = FlappyBird.screen_height/2
+                    - FlappyBird.restartButton.getHeight()/2 - 250;
+            int xOffset = FlappyBird.restartButton.getWidth()/2;
+            int yOffset = FlappyBird.restartButton.getHeight()/2;
+            int radius = FlappyBird.restartButton.getWidth()/2;
+
+            batch.draw(FlappyBird.restartButton,restartX, restartY);
+
+            if (Gdx.input.justTouched()) {
+
+                if (withinCircle(Gdx.input.getX(), FlappyBird.screen_height - Gdx.input.getY(),
+                        restartX + xOffset, restartY + yOffset, radius) ) {
                     restart = true;
-                    //velocity = 0;
                 }
             }
-
-            batch.draw(FlappyBird.restartButton,FlappyBird.screen_width/2 -
-                    FlappyBird.restartButton.getWidth()/2, FlappyBird.screen_height/2
-                    - FlappyBird.restartButton.getHeight()/2 - 250);
         }
 
     }
@@ -160,6 +166,15 @@ public class Bird {
 
         this.boundingCircle.setY(this.y);
 
+    }
+
+    public boolean withinCircle(int xTest, int yTest, int xCentreCheck, int yCentreCheck, int radius) {
+        if (  (xTest < xCentreCheck + radius) && (xTest > xCentreCheck - radius)  ) {
+            if (  (yTest < yCentreCheck + radius) && (yTest > yCentreCheck - radius)  ) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
