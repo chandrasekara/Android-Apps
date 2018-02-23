@@ -20,6 +20,10 @@ public class TubeGenerator {
 
     public boolean createTube = true;
 
+    public final int minFPS = 80;
+
+    public final int FPSminThreshold = 60;
+
     Timer timer;
 
     public int counter;
@@ -30,7 +34,6 @@ public class TubeGenerator {
         this.game = game_;
         this.timeInterval = timeInterval_;
         this.game.addTubePair( generateTube()  );
-        //timer = new Timer();
 
         counter = 0;
 
@@ -43,8 +46,8 @@ public class TubeGenerator {
 
         int FPS = Gdx.graphics.getFramesPerSecond();
 
-        if (FPS < 60) {
-            FPS = 80; //magic numbers, change later
+        if (FPS < FPSminThreshold) {
+            FPS = minFPS;
         }
 
         if (counter > (int)(FPS * 1.9)) {

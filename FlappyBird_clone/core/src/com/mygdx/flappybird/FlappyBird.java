@@ -42,36 +42,23 @@ public class FlappyBird extends ApplicationAdapter {
 	TubeGenerator tubeGenerator;
 
 	public static boolean hitTube;
-
 	public int score;
-
 	public ScoreManager scoreManager;
-
 	public static Texture restartButton;
-
-	//change attrs that should be private to private later :)
 
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		background = new Texture("bg.png");
-
 		screen_width = Gdx.graphics.getWidth();
 		screen_height = Gdx.graphics.getHeight();
-
 		flappy = new Bird(batch);
 		tubes = new ArrayList<TubePair>();
-
-
 		tubeGenerator = new TubeGenerator(2, this);
-
 		hitTube = false;
-
 		score = 0;
-
 		scoreManager = new ScoreManager();
-
 		restartButton = new Texture("replaybutton.png");
 
 	}
@@ -79,12 +66,7 @@ public class FlappyBird extends ApplicationAdapter {
 	@Override
 	public void render () {
 
-
-		//Gdx.app.log("Score",Integer.toString(score));
-
-		//Remove later
 		framesPerSecond = Gdx.graphics.getFramesPerSecond();
-		//Gdx.app.log("MyTag", Integer.toString(framesPerSecond));
 
 		batch.begin();
 		batch.draw(background, 0, 0, screen_width, screen_height);
@@ -94,13 +76,9 @@ public class FlappyBird extends ApplicationAdapter {
 				flappy.jump();
 			}
 
-
 			if (hitTube == false) {
 				tubeGenerator.step();
 			}
-			// Render all of the tubes that are present on screen
-
-			// Find a way to have this in the same for loop later
 
 			if (tubes.size() > 0) {
 				TubePair leftMostTubePair = tubes.get(0);
@@ -125,14 +103,12 @@ public class FlappyBird extends ApplicationAdapter {
 				batch.draw(TubePair.bottomSprite,tube.x, tube.bottomTubeY);
 				batch.draw(TubePair.topSprite, tube.x, tube.topTubeY);
 
-				// Collision detection here
-
+				// Collision Detection
 				Rectangle topRect = new Rectangle(tube.x, tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
 				Rectangle bottomRect = new Rectangle(tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
 				Intersector intersector = new Intersector();
 
 				if (intersector.overlaps(flappy.boundingCircle,topRect) || intersector.overlaps(flappy.boundingCircle,bottomRect) ) {
-					//Gdx.app.log("FLAPPY","hitting the tube");
 					hitTube = true;
 				}
 
@@ -141,7 +117,6 @@ public class FlappyBird extends ApplicationAdapter {
 			flappy.step();
 			flappy.render();
 
-			//TEMP
 			drawScore();
 
 		} else {
