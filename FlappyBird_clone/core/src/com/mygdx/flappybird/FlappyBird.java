@@ -57,7 +57,7 @@ public class FlappyBird extends ApplicationAdapter {
 		tubes = new ArrayList<TubePair>();
 		tubeGenerator = new TubeGenerator(2, this);
 		hitTube = false;
-		score = 0;
+		score = 9;
 		scoreManager = new ScoreManager();
 		restartButton = new Texture("replaybutton.png");
 
@@ -104,11 +104,14 @@ public class FlappyBird extends ApplicationAdapter {
 				batch.draw(TubePair.topSprite, tube.x, tube.topTubeY);
 
 				// Collision Detection
-				Rectangle topRect = new Rectangle(tube.x, tube.topTubeY, tube.topSprite.getWidth(), tube.topSprite.getHeight());
-				Rectangle bottomRect = new Rectangle(tube.x, tube.bottomTubeY, tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
+				Rectangle topRect = new Rectangle(tube.x, tube.topTubeY, tube.topSprite.getWidth(),
+						tube.topSprite.getHeight());
+				Rectangle bottomRect = new Rectangle(tube.x, tube.bottomTubeY,
+						tube.bottomSprite.getWidth(), tube.bottomSprite.getHeight());
 				Intersector intersector = new Intersector();
 
-				if (intersector.overlaps(flappy.boundingCircle,topRect) || intersector.overlaps(flappy.boundingCircle,bottomRect) ) {
+				if (intersector.overlaps(flappy.boundingCircle,topRect) || intersector.overlaps
+						(flappy.boundingCircle,bottomRect) ) {
 					hitTube = true;
 				}
 
@@ -147,19 +150,25 @@ public class FlappyBird extends ApplicationAdapter {
 		int tens;
 		int ones;
 
+		// Get each digit of the score separately
 		ones = score % 10;
-
 		tens = score / 10;
 
+		Texture onesDigitImage = scoreManager.numbers[ones];
+		Texture tensDigitImage = scoreManager.numbers[tens];
+
+		int drawX = scoreManager.xDrawPosition;
+		int drawY = scoreManager.yDrawPosition;
+
+		int drawScale = scoreManager.drawScale;
+
 		//abstract these magic numbers later
-		batch.draw(scoreManager.numbers[ones], 50 + scoreManager.numbers[0].getWidth()*3
-				,50, scoreManager.numbers[ones].getWidth() * 3, scoreManager
-						.numbers[ones].getHeight() * 3);
+		batch.draw(onesDigitImage, drawX + scoreManager.numbers[0].getWidth() * drawScale
+				,drawY, onesDigitImage.getWidth() * drawScale, onesDigitImage.getHeight() * drawScale);
 
 		if (tens != 0) {
-			batch.draw(scoreManager.numbers[tens], 50
-					,50, scoreManager.numbers[tens].getWidth() * 3, scoreManager
-							.numbers[tens].getHeight() * 3);
+			batch.draw(tensDigitImage, drawX
+					,drawY, tensDigitImage.getWidth() * drawScale, tensDigitImage.getHeight() * drawScale);
 		}
 
 

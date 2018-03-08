@@ -10,6 +10,11 @@ public class ScoreManager {
 
     public Texture[] numbers;
 
+    public static final int drawScale = 3;
+    public static final int xDrawPosition = 50;
+    public static final int yDrawPosition = 50;
+
+
     public ScoreManager() {
         numbers = new Texture[10];
 
