@@ -162,7 +162,6 @@ public class FlappyBird extends ApplicationAdapter {
 
 		int drawScale = scoreManager.drawScale;
 
-		//abstract these magic numbers later
 		batch.draw(onesDigitImage, drawX + scoreManager.numbers[0].getWidth() * drawScale
 				,drawY, onesDigitImage.getWidth() * drawScale, onesDigitImage.getHeight() * drawScale);
 
