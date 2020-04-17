@@ -2,3 +2,8 @@
 
 
 Makes use of Android SDK, Java and the LibGDX framework 
+
+
+![alt text](https://github.com/chandrasekara/Flappy-Bird-Clone/blob/master/repo-img/flappyPicture2.jpg?raw=true "Logo Title Text 1")
+
+
